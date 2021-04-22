@@ -1,10 +1,13 @@
 # code-22April2021-SandeepRavula
-BMI calculation code
-
+Python application to calculate BMI
 
 ## Dependency Packages: 
+#### Library:
 json
 
-## USAGE:
-Python <filename>
+#### Test:
+flake8
+pytest
 
+## USAGE:
+python <filename>
