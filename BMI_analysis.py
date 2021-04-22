@@ -30,6 +30,7 @@ def bmi(gender,height,weight):
     elif bmi_value >= bmi_index_limits[5]:
         return (gender, height, weight, bmi_value, bmi_categories[5], health_risk[5])
 
+    
 ## Below is the function to get the count of number of overweighted people among the given input samples
 def get_Count_of_overWeight_ppl(consolidated_data):
     """
@@ -42,6 +43,7 @@ def get_Count_of_overWeight_ppl(consolidated_data):
         if data[4] == 'Overweight':
             count_overweight += 1
     return count_overweight
+
 
 #Below is the main function of this entire code
 def main(input_file):
