@@ -2,6 +2,7 @@
 from pprint import pprint
 import json
 
+#Below is the function to calculate and return the BMI of the sample based on the given height, weight along with the BMI category and Health-Risks
 def bmi(gender,height,weight):
     """
     This function will calculates the BMI rate of each sample and returns the output data
