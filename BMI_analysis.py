@@ -1,4 +1,4 @@
-## This is a Python code to give analysis result of BMI on given JSON sample data
+## This is a Python code to give analysis results of BMI on the given JSON sample data-sets
 from pprint import pprint
 import json
 
@@ -15,20 +15,24 @@ def bmi(gender,height,weight):
     bmi_categories = ["Underweight", "Normal weight", "Overweight", "Moderately obese", "Severely obese", "Very severely obese"]
     health_risk = ["Malnutrition risk", "Low risk", "Enhanced risk", "Medium risk", "High risk", "Very high risk"]
     #Below is the mathematical formula for calculating BMI value
-    bmi_value = weight/(height**2)                ##  BMI formula : BMI(kg/m**2) = mass(kg) / height(m**2)
+    bmi_value = round(weight/(height**2), 2)            ##  BMI formula : BMI(kg/m**2) = mass(kg) / height(m**2)
+    bmi_in_units = str(bmi_value) + " kg/m2"            ## concatenating the bmi value with units "kg/m**2"
+    height_in_units = str(height) + " m"                ## concatenating the height value with units "m"
+    weight_in_units = str(weight) + " kg"               ## concatenating the weight value with units "kg"
+    
     # Conditional loops for returning the respective output based on respective BMI value range limits
     if bmi_value <= bmi_index_limits[0]:
-        return (gender, height, weight, bmi_value, bmi_categories[0], health_risk[0])
+        return (gender, height_in_units, weight_in_units, bmi_in_units, bmi_categories[0], health_risk[0])
     elif bmi_index_limits[0] < bmi_value <= bmi_index_limits[1]:
-        return (gender, height, weight, bmi_value, bmi_categories[1], health_risk[1])
+        return (gender, height_in_units, weight_in_units, bmi_in_units, bmi_categories[1], health_risk[1])
     elif bmi_index_limits[1] < bmi_value <= bmi_index_limits[2]:
-        return (gender, height, weight, bmi_value, bmi_categories[2], health_risk[2])
+        return (gender, height_in_units, weight_in_units, bmi_in_units, bmi_categories[2], health_risk[2])
     elif bmi_index_limits[2] < bmi_value <= bmi_index_limits[3]:
-        return (gender, height, weight, bmi_value, bmi_categories[3], health_risk[3])
+        return (gender, height_in_units, weight_in_units, bmi_in_units, bmi_categories[3], health_risk[3])
     elif bmi_index_limits[3] < bmi_value <= bmi_index_limits[4]:
-        return (gender, height, weight, bmi_value, bmi_categories[4], health_risk[4])
+        return (gender, height_in_units, weight_in_units, bmi_in_units, bmi_categories[4], health_risk[4])
     elif bmi_value >= bmi_index_limits[5]:
-        return (gender, height, weight, bmi_value, bmi_categories[5], health_risk[5])
+        return (gender, height_in_units, weight_in_units, bmi_in_units, bmi_categories[5], health_risk[5])
 
     
 ## Below is the function to get the count of number of overweighted people among the given input samples
@@ -58,10 +62,12 @@ def main(input_file):
         ## Below we are calling the bmi function to get the required output
         response = bmi(bmi_data['Gender'], bmi_data['HeightCm']/100, bmi_data['WeightKg'])
         output_list.append(response)
+    print('\nBelow output are the data-sets in the format of [Gender, Height_in_metres. Weight, BMI value, BMI category, health-risks]:')
     pprint(output_list)
     count_overweight_ppl = get_Count_of_overWeight_ppl(output_list)       ## Calling the get_Count_of_overWeight_ppl function
     overweight_percent = count_overweight_ppl / len(output_list)*100
-    print('\n\ncount of overweight people is:', count_overweight_ppl)
+    print('\nNOTE: In the above output, BMI values are rounded to 2 decimal places')
+    print('\ncount of overweight people is:', count_overweight_ppl)
     print(f'\nMy observation: out of total BMI samples, {round(overweight_percent, 2)} % are overweighted\n')
 
 
